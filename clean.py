@@ -7,6 +7,15 @@ def load(path):
 def clean(df):
     # 第一步：删重复表头
     clean_df=df[df["日期"]!="日期"].copy()
+
+    #第二步：修日期
+    s=pd.to_datetime(clean_df["日期"],errors="coerce",format="mixed")
+    bad=clean_df[s.isna()]
+    print(f"无法解析的日期： {len(bad)} 行")
+    print(bad["日期"].tolist())
+    clean_df= clean_df[s.notna()].copy()
+    clean_df["日期"] = s.dt.strftime("%Y-%m-%d")
+
     return clean_df
 
 def main():
