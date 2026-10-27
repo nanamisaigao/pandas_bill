@@ -16,6 +16,14 @@ def clean(df):
     clean_df= clean_df[s.notna()].copy()
     clean_df["日期"] = s.dt.strftime("%Y-%m-%d")
 
+    # 第三步：修金额
+    s=clean_df["金额"].astype(str)
+    s=s.str.strip()
+    s=s.str.replace("元","",regex=False)
+    clean_df["金额"]=pd.to_numeric(s,errors="coerce")
+    clean_df= clean_df.dropna(subset=["金额"]).copy()
+
+
     return clean_df
 
 def main():
