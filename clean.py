@@ -23,6 +23,20 @@ def clean(df):
     clean_df["金额"]=pd.to_numeric(s,errors="coerce")
     clean_df= clean_df.dropna(subset=["金额"]).copy()
 
+    # 第四步：修类别
+    s=clean_df["类别"]
+    s = s.str.strip()  # 去前后空格
+    s = s.str.lower()  # 统一小写（中文不受影响，英文同义词受益）
+    s=s.replace({
+        "吃饭": "餐饮", "food": "餐饮",
+        "出行": "交通", "taxi": "交通",
+        "买东西": "购物", "shopping": "购物",
+        "玩乐": "娱乐", "game": "娱乐",
+    })
+    std = ["餐饮", "交通", "购物", "娱乐"]
+    s=s.where(s.isin(std),"其他")
+    clean_df["类别"]=s
+
 
     return clean_df
 

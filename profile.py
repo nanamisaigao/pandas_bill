@@ -48,7 +48,7 @@ def profile(path):
     print()
 
     # 6. 类别非标准值
-    std=['餐饮','交通','购物','娱乐']
+    std=['餐饮','交通','购物','娱乐','其他']
     bad=s[~s.isin(std)]
     print('非类别',len(bad))
     print(bad.tolist())
