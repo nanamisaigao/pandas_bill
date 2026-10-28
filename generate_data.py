@@ -87,8 +87,8 @@ def dirty_category():
 # ---------- 组装 ----------
 rows = [HEADER]
 
-for month in range(1, 7):
-    for _ in range(15):
+for month in range(1, 13):
+    for _ in range(2000):
         r = random.random()
         if r < 0.70:                     # 70% 正常
             row = [clean_date(), clean_category(), clean_amount()]
