@@ -39,6 +39,7 @@ def clean(df):
     })
     std = ["餐饮", "交通", "购物", "娱乐"]
     clean_df["类别"]=clean_df["类别"].where(clean_df["类别"].isin(std),"其他")
+    clean_df=clean_df.drop_duplicates().copy()
     clean_df=clean_df.sort_values("日期").reset_index(drop=True)
 
     return clean_df
