@@ -1,8 +1,11 @@
 import sys
 import pandas as pd
+import warnings
 
 def load(path):
-    return pd.read_csv(path, on_bad_lines="warn")
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", pd.errors.ParserWarning)
+        return pd.read_csv(path, on_bad_lines="warn")
 
 def clean(df):
     # 第一步：删重复表头
@@ -13,8 +16,8 @@ def clean(df):
     clean_df["日期"]=pd.to_datetime(clean_df["日期"],errors="coerce",format="mixed")
 
     bad=clean_df["日期"].isna()
-    print(f"无法解析的日期： {bad.sum()[:10]} 行")
-    print(bad_df[bad].tolist())
+    print(f"无法解析的日期： {bad.sum()} 行")
+    print(bad_df[bad].tolist()[:10])
 
     clean_df= clean_df[clean_df["日期"].notna()].copy()
     clean_df = clean_df[clean_df["日期"].dt.year == 2024].copy()
