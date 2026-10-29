@@ -4,4 +4,4 @@ __pycache__/
 .idea/
 *.png
 *.csv
-!data_sample.csv
+!budget.csv
