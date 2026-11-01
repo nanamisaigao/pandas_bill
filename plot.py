@@ -63,7 +63,7 @@ def pie_chart(pivot):
 
 
 def main():
-    path = sys.argv[1] if len(sys.argv) > 1 else "cleaned.csv"
+    path = sys.argv[1] if len(sys.argv) > 1 else "data/cleaned.csv"
     df = analyze.load(path)
     pivot,total,pct,merged =analyze.monthly_report(df)
     line_chart(merged)

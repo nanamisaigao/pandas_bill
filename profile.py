@@ -65,5 +65,5 @@ def profile(path):
 
 
 if __name__ == "__main__":
-    path = sys.argv[1] if len(sys.argv) > 1 else "data_sample.csv"
+    path = sys.argv[1] if len(sys.argv) > 1 else "data/data_sample.csv"
     profile(path)

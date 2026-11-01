@@ -48,10 +48,10 @@ def clean(df):
     return clean_df
 
 def main():
-    path = sys.argv[1] if len(sys.argv) > 1 else "data_sample.csv"
+    path = sys.argv[1] if len(sys.argv) > 1 else "data/data_sample.csv"
     df = load(path)
     df_clean = clean(df)
-    df_clean.to_csv("cleaned.csv", index=False,encoding="utf-8")
+    df_clean.to_csv("data/cleaned.csv", index=False,encoding="utf-8")
     print(f"清洗前：{len(df)} 行")
     print(f"清洗后：{len(df_clean)} 行")
 

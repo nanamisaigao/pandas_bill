@@ -14,7 +14,7 @@ def monthly_report(df):
     monthly_total=pivot.sum(axis=1) #计算月份总额
     pct=pivot.div(monthly_total,axis=0)*100
     # 新增：merge 预算
-    budget=pd.read_csv("budget.csv")
+    budget=pd.read_csv("data/budget.csv")
     total_df= monthly_total.reset_index()
     total_df.columns = ["月份", "实际"]
     merged=pd.merge(total_df,budget,on="月份",how="outer")
@@ -38,7 +38,7 @@ def print_report(pivot,monthly_total,pct,merged):
 
 
 def main():
-    path = sys.argv[1] if len(sys.argv) > 1 else "cleaned.csv"
+    path = sys.argv[1] if len(sys.argv) > 1 else "data/cleaned.csv"
     df = load(path)
     pivot,total,pct,merged = monthly_report(df)
     print_report(pivot,total,pct,merged)

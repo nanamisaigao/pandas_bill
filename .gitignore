@@ -2,6 +2,5 @@
 __pycache__/
 *.pyc
 .idea/
-*.png
 *.csv
-!budget.csv
+!data/budget.csv

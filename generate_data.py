@@ -118,7 +118,7 @@ for month in range(1, 13):
 for _ in range(5):
     rows.append(["2024-03-15", "餐饮", "88.0"])
 
-with open("data_sample.csv", "w", encoding="utf-8", newline="") as f:
+with open("data/data_sample.csv", "w", encoding="utf-8", newline="") as f:
     csv.writer(f).writerows(rows)
 
 print(f"生成 {len(rows)-1} 行数据（含异常）")
